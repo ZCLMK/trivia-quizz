@@ -10,7 +10,7 @@ class CategoryPicker extends Component {
     trimCategoryName = name => {
         let nameAsArray = name.split('');
         let colonIndex = nameAsArray.indexOf(':');
-        return nameAsArray.slice(colonIndex + 1)
+        return nameAsArray.slice(colonIndex + 1).join('')
     }
 
     render() {
@@ -19,7 +19,7 @@ class CategoryPicker extends Component {
                 key={category.id}
                 id={category.id}
                 name={this.trimCategoryName(category.name)}
-                onStoreQuizCategory={() => this.props.onStoreQuizCategory(category.id)}
+                onStoreQuizCategory={() => this.props.onStoreQuizCategory(category.id, this.trimCategoryName(category.name))}
                 selected={category.id === this.props.currentCategory}
             />
         }) :
@@ -43,7 +43,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     onFetchCategories: () => dispatch(actions.fetchAllCategories()),
-    onStoreQuizCategory: (id) => dispatch(actions.storeQuizCategory(id))
+    onStoreQuizCategory: (id, name) => dispatch(actions.storeQuizCategory(id, name))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPicker);

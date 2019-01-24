@@ -26,7 +26,8 @@ const reducer = (state = initialState, action) => {
         case actions.STORE_QUIZ_CATEGORY:
             return {
                 ...state,
-                quizCategory: action.payload
+                quizCategory: action.categoryId,
+                categoryName: action.categoryName
             }
 
         case actions.STORE_QUIZ_LEVEL:

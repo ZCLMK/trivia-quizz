@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PageHeader from '../PageHeader/PageHeader';
 import CategoryPicker from './CategoryPicker/CategoryPicker';
 import DifficultyPicker from './DifficultyPicker/DifficultyPicker';
 import QuestionNumberPicker from './QuestionNumberPicker/QuestionNumberPicker';
@@ -43,7 +42,6 @@ class Home extends Component {
 
         return (
             <div id="home">
-                < PageHeader />
                 < CategoryPicker />
                 < DifficultyPicker />
                 <QuestionNumberPicker />

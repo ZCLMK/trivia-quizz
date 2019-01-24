@@ -2,11 +2,12 @@ import * as actions from './actionTypes';
 
 //  Store quizz params ------------------------------------------------------------------------------
 
-export const storeQuizCategory = (categoryId) => {
-
+export const storeQuizCategory = (categoryId, categoryName) => {
+    console.log('le nom de la catégorie est ' + categoryName)
     return {
         type: actions.STORE_QUIZ_CATEGORY,
-        payload: categoryId
+        categoryId: categoryId,
+        categoryName: categoryName
     }
 }
 
@@ -36,7 +37,7 @@ const fetchQuizQuestionsStart = () => {
 
 export const fetchQuizQuestions = (category, difficulty, number) => dispatch => {
     dispatch(fetchQuizQuestionsStart());
-    const url = `https://opentdb.com/api.php?amount=${number}&category=${category}&difficulty=${difficulty}`;
+    const url = `https://opentdb.com/api.php?amount=${number}&category=${category}&difficulty=${difficulty}&encode=url3986`;
     console.log(url);
 
     fetch(url)

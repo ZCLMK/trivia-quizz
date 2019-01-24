@@ -12,8 +12,7 @@ class CategoryThumbnail extends Component {
         return (
             <div
                 onClick={this.props.onStoreQuizCategory}
-                className={'category-thumbnail' + isSelected}
-            >
+                className={'category-thumbnail' + isSelected}>
                 <p>{this.props.name} ({this.props.id})</p>
             </div >)
     }
