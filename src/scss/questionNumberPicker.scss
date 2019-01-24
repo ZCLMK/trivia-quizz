@@ -1,0 +1,30 @@
+
+@import './variables.scss';
+
+.question-number-picker{
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 100%;   
+    display:flex;
+    justify-content: center;
+}
+
+#question-number-wrapper{
+    
+    height: 100%;
+    width:50%;
+    display: flex;
+    justify-content: space-around;
+
+
+}
+.question-number-btn{
+    border-radius: $primary-border-radius;
+    background-color: rgba(0, 4, 218, 0.315);
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

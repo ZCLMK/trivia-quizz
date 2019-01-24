@@ -1,0 +1,11 @@
+#pageHeader {
+  height: 70px;
+  background-color: #18b3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#pageTitle {
+  color: white;
+  font-weight: 800;
+  font-size: 2em; }
