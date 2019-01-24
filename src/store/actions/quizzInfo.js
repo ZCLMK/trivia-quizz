@@ -1,30 +1,6 @@
 import * as actions from './actionTypes';
 
-
-export const fetchAllCategories = () => dispatch => {
-    //    api call to 'https://opentdb.com/api_category.php'
-    fetch('https://opentdb.com/api_category.php')
-        .then(res => res.json())
-        .then(data => dispatch(fetchAllCategoriesSuccess(data.trivia_categories)))
-        .catch(e => dispatch(fetchAllCategoriesFail(e)))
-}
-
-export const fetchAllCategoriesSuccess = (categories) => {
-    console.log(categories)
-    return {
-        type: actions.FETCH_CATEGORIES_SUCCESS,
-        payload: categories
-    }
-}
-
-export const fetchAllCategoriesFail = (error) => {
-    console.log(error)
-    return {
-        type: actions.FETCH_CATEGORIES_FAIL,
-        error: true
-    }
-}
-// dispatcher actions pour erreur et success
+//  Store quizz params ------------------------------------------------------------------------------
 
 export const storeQuizCategory = (categoryId) => {
 
@@ -49,3 +25,41 @@ export const storeNumberOfQuestions = (number) => {
         payload: number
     }
 }
+//  FETCH QUESTIONS ------------------------------------------------------------------------------
+
+const fetchQuizQuestionsStart = () => {
+    return {
+        type: actions.FETCH_QUIZ_QUESTIONS_START,
+        loadingQuestions: true
+    }
+}
+
+export const fetchQuizQuestions = (category, difficulty, number) => dispatch => {
+    dispatch(fetchQuizQuestionsStart());
+    const url = `https://opentdb.com/api.php?amount=${number}&category=${category}&difficulty=${difficulty}`;
+    console.log(url);
+
+    fetch(url)
+        .then(data => data.json())
+        .then(questions => dispatch(fetchQuizQuestionsSuccess(questions)))
+        .catch(e => dispatch(fetchQuizQuestionsFail(e)))
+}
+
+const fetchQuizQuestionsSuccess = (data) => {
+    console.log(data.results)
+    return {
+        type: actions.FETCH_QUIZ_QUESTIONS_SUCCESS,
+        payload: data.results,
+        isLoadingQuestions: false
+    }
+}
+const fetchQuizQuestionsFail = (error) => {
+    console.error(error)
+    return {
+        type: actions.FETCH_QUIZ_QUESTIONS_FAIL,
+        error: error,
+        isLoadingQuestions: false
+    }
+}
+
+

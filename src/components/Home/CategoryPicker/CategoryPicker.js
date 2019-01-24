@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CategoryThumbnail from './CategoryThumbnail/CategoryThumbnail'
-import * as actions from '../../../store/actions/quizzInfo'
+import CategoryThumbnail from './CategoryThumbnail/CategoryThumbnail';
+import * as actions from '../../../store/actions/index';
 class CategoryPicker extends Component {
     componentWillMount = () => {
         this.props.onFetchCategories()
