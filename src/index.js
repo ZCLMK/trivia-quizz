@@ -6,12 +6,12 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 // import store from './store';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-
 import thunk from 'redux-thunk';
 import categories from './store/reducers/categories';
 import quizInfo from './store/reducers/quizInfo';
+import quizPage from './store/reducers/quizPage';
 
-const rootReducer = combineReducers({ categories: categories, quizInfo: quizInfo })
+const rootReducer = combineReducers({ categories: categories, quizInfo: quizInfo, quizPage: quizPage })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 

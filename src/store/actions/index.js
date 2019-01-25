@@ -1,7 +1,8 @@
 export {
     storeQuizCategory,
     storeQuizLevel,
-    storeNumberOfQuestions
+    storeNumberOfQuestions,
+    fetchQuizQuestions
 } from './quizzInfo'
 
 export {
@@ -9,5 +10,5 @@ export {
 } from './categories';
 
 export {
-    fetchQuizQuestions
-} from './quizzInfo';
+    evaluateAnswer
+} from './quizPage';
