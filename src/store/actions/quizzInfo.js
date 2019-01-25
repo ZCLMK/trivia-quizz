@@ -1,4 +1,5 @@
 import * as actions from './actionTypes';
+import { decodeApiData } from '../../utils/utils';
 
 //  Store quizz params ------------------------------------------------------------------------------
 
@@ -50,7 +51,7 @@ const fetchQuizQuestionsSuccess = (data) => {
     console.log(data.results)
     return {
         type: actions.FETCH_QUIZ_QUESTIONS_SUCCESS,
-        payload: data.results,
+        payload: decodeApiData(data.results),
         isLoadingQuestions: false
     }
 }

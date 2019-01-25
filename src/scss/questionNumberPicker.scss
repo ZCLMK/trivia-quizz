@@ -8,14 +8,16 @@
     width: 100%;   
     display:flex;
     justify-content: center;
+    @include flex-center;
 }
 
 #question-number-wrapper{
     
     height: 100%;
     width:50%;
-    display: flex;
-    justify-content: space-around;
+    // display: flex;
+    // justify-content: space-around;
+    @include flex-center(row, space-around, center);
 
 
 }
@@ -23,8 +25,6 @@
     border-radius: $primary-border-radius;
     background-color: rgba(0, 4, 218, 0.315);
     width: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
 }
 

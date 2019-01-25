@@ -1,24 +1,32 @@
 /*
 Define color scheme
 */
+/*  MIXINS */
 .question-number-picker {
   height: 100px;
   background-color: white;
   padding: 10px;
   width: 100%;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
 
 #question-number-wrapper {
   height: 100%;
   width: 50%;
   display: flex;
-  justify-content: space-around; }
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; }
 
 .question-number-btn {
   border-radius: 2px;
   background-color: rgba(0, 4, 218, 0.315);
   width: 70px;
   display: flex;
-  align-items: center;
-  justify-content: center; }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }

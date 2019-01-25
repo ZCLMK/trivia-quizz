@@ -1,9 +1,14 @@
+/*
+Define color scheme
+*/
+/*  MIXINS */
 #pageHeader {
   height: 70px;
-  background-color: #18b3f0;
+  background-color: #0067c7;
   display: flex;
-  align-items: center;
-  justify-content: center; }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
 
 #pageTitle {
   color: white;

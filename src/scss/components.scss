@@ -1,0 +1,8 @@
+.title-wrapper{
+    @include titleWrapper;
+    h1 {
+        color: #fff;
+         font-weight: 600;
+         font-size: 1.4em;
+    }
+}

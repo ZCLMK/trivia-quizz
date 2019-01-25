@@ -1,0 +1,30 @@
+/*
+Define color scheme
+*/
+/*  MIXINS */
+#quiz-page {
+  display: block; }
+
+#quiz-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: #3d3d3d; }
+
+#question-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 30px; }
+
+#answers-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 30px;
+  flex-wrap: wrap; }

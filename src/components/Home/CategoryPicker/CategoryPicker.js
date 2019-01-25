@@ -27,7 +27,10 @@ class CategoryPicker extends Component {
 
         return (
             <div id="categoryPicker" >
-                <h1 id="category-title">Categories</h1>
+                <div className="title-wrapper">
+                    <h1 id="category-title">Categories</h1>
+                </div>
+
                 <div id="categories-grid">
                     {categories}
                 </div>
@@ -37,8 +40,8 @@ class CategoryPicker extends Component {
 }
 
 const mapStateToProps = state => ({
-    categories: state.categories,
-    currentCategory: state.quizCategory
+    categories: state.categories.categories,
+    currentCategory: state.quizInfo.quizCategory
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,0 +1,20 @@
+@import './variables.scss';
+
+
+.answer-btn{
+    @include flex-center;
+    border-radius: 20px;
+    border: $primary-border-radius;
+    background-color: rgb(0, 153, 255);
+    width: 45%;
+    height: 30px;
+    padding: 10px;
+    margin: 7px 0px;
+    &:hover{
+        background-color: darken(rgb(0, 153, 255), 8%);
+    }
+    p{
+        font-weight: 800;
+        color: #fff;
+    }
+}

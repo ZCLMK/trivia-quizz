@@ -52,9 +52,9 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-    quizCategory: state.quizCategory,
-    quizLevel: state.quizLevel,
-    numberOfQuestions: state.numberOfQuestions
+    quizCategory: state.quizInfo.quizCategory,
+    quizLevel: state.quizInfo.quizLevel,
+    numberOfQuestions: state.quizInfo.numberOfQuestions
 })
 
 const mapDispatchToProps = dispatch => {

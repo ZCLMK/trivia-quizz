@@ -1,9 +1,9 @@
+@import './variables.scss';
+
 #pageHeader{
     height: 70px;
-    background-color: rgb(24, 179, 240);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: rgb(0, 103, 199);
+   @include flex-center;
 }
 
 #pageTitle{

@@ -32,7 +32,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        quizLevel: state.quizLevel
+        quizLevel: state.quizInfo.quizLevel
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DifficultyPicker);

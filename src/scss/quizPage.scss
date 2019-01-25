@@ -1,0 +1,26 @@
+@import './variables';
+
+#quiz-page{
+  display:block;
+}
+
+#quiz-category{
+    @include titleWrapper;
+}
+
+#question-box{
+    @include flex-center;
+    padding: 30px;
+}
+
+#answers-box{
+    @include flex-center(row, space-evenly,center);
+    padding: 30px;
+    flex-wrap: wrap;
+
+}
+
+
+
+
+
