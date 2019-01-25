@@ -1,6 +1,9 @@
 import * as actions from '../actions/actionTypes';
 import { decodeApiData } from '../../utils/utils';
 
+const initialState = {
+    isLoadingQuestions: false,
+}
 
 const mockState = {
     quizCategory: 15,
@@ -70,7 +73,7 @@ const mockState = {
 const decodedMock = { ...mockState, questions: decodeApiData(mockState.questions) }
 
 
-const reducer = (state = decodedMock, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
 
         case actions.STORE_QUIZ_CATEGORY:

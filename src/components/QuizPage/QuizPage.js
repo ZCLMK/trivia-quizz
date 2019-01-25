@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import AnswerBtn from './AnswerBtn/AnswerBtn';
 import { randomizeArray } from '../../utils/utils';
 import * as actions from '../../store/actions/index';
-import EndPage from '../EndPage/EndPage'
+
 class QuizPage extends Component {
+
 
     state = {
         currentQuestionNumber: 1,
@@ -40,12 +41,27 @@ class QuizPage extends Component {
     }
 
     render() {
-        let possibleAnswers = [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')];
+        // mettre les 'correct_answers' et les 'incorrect_answers' dans un même array
+
+        let possibleAnswersArray = this.props.questions ? [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')] : null;
+        let possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map(answer => {
+            return < AnswerBtn
+                answer={answer}
+                handleClickAnswer={() => {
+                    if (!this.isLastQuestion()) {
+                        this.handleClickAnswer(answer, this.getQuestionProperty('correct_answer'))
+                    } else {
+                        this.props.history.push('./quiz-results')
+                        return;
+                    }
+                }}
+            />
+        }) : null
 
         //    mélange les question SI question à choix multiple
 
         if (this.getQuestionProperty('type') === "multiple" && !this.isLastQuestion()) {
-            possibleAnswers = randomizeArray(possibleAnswers);
+            possibleAnswersArray = randomizeArray(possibleAnswersArray);
         }
 
         return (
@@ -63,19 +79,7 @@ class QuizPage extends Component {
                     </div>
                     <div id="answers-box">
                         {/* Render all possible answers within a custom component */}
-                        {possibleAnswers.map(answer => (
-                            < AnswerBtn
-                                answer={answer}
-                                handleClickAnswer={() => {
-                                    if (!this.isLastQuestion()) {
-                                        this.handleClickAnswer(answer, this.getQuestionProperty('correct_answer'))
-                                    } else {
-                                        this.props.history.push('./quiz-results')
-                                        return;
-                                    }
-                                }}
-                            />
-                        ))}
+                        {possibleAnswers}
                     </div>
 
                 </div>
