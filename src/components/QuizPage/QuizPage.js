@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import AnswerBtn from './AnswerBtn/AnswerBtn';
 import { randomizeArray } from '../../utils/utils';
 import * as actions from '../../store/actions/index';
+import Countdown from './Countdown/Countdown';
 
 class QuizPage extends Component {
 
 
     state = {
         currentQuestionNumber: 1,
+        withCountdown: true
     }
     componentDidUpdate = (prevProps, prevState) => {
         console.log(this.isLastQuestion())
@@ -23,17 +25,27 @@ class QuizPage extends Component {
         if (!this.isLastQuestion()) {
             this.props.evaluateAnswer(answer, correctAnswer);
             this.goToNextQuestion()
+
+
         } else { // Plus de questions, aller à la page des résutlats => './quiz-results'
             this.props.history.push('./quiz-results');
         }
     }
 
     goToNextQuestion = () => {
-        // Check that we don't exceed the number of questions available
-
-        if (this.state.currentQuestionNumber < this.props.numberOfQuestions) {
-            this.setState({ currentQuestionNumber: this.state.currentQuestionNumber + 1 });
-        }
+        this.setState({ withCountdown: false })
+        // Wait 5 seconds, then go to the next question (to show the right answer)
+        setTimeout(() => {
+            // hide the countdown while showing the right answer
+            // Check that we don't exceed the number of questions available
+            if (this.state.currentQuestionNumber < this.props.numberOfQuestions) {
+                this.setState({
+                    currentQuestionNumber: this.state.currentQuestionNumber + 1,
+                    withCountdown: true
+                });
+            }
+        }, 5000);
+        // display countdown again
     }
 
     isLastQuestion = () => {
@@ -44,9 +56,10 @@ class QuizPage extends Component {
         // mettre les 'correct_answers' et les 'incorrect_answers' dans un même array
 
         let possibleAnswersArray = this.props.questions ? [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')] : null;
-        let possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map(answer => {
+        let possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map((answer, i) => {
             return < AnswerBtn
                 answer={answer}
+                key={i}
                 handleClickAnswer={() => {
                     if (!this.isLastQuestion()) {
                         this.handleClickAnswer(answer, this.getQuestionProperty('correct_answer'))
@@ -74,8 +87,16 @@ class QuizPage extends Component {
 
 
                 <div id="quiz-box">
+                    < Countdown
+                        currentQuestion={this.state.currentQuestionNumber}
+                        correctAnswer={this.getQuestionProperty('correct_answer')}
+                        handleNoAnswer={() => this.handleClickAnswer('', this.getQuestionProperty('correct_answer'))}
+                        countdownVisible={this.state.withCountdown}
+                    />  {/* utilisé en cas de non réponse */}
+                    {/* automatically give wrong answer*/}
                     <div id="question-box">
                         {this.getQuestionProperty('question')}
+
                     </div>
                     <div id="answers-box">
                         {/* Render all possible answers within a custom component */}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CategoryThumbnail from './CategoryThumbnail/CategoryThumbnail';
 import * as actions from '../../../store/actions/index';
-import * as icons from '../../icons';
+// import * as icons from '../../icons';
 class CategoryPicker extends Component {
     componentWillMount = () => {
         this.props.onFetchCategories()
@@ -20,7 +20,7 @@ class CategoryPicker extends Component {
                 key={category.id}
                 id={category.id}
                 name={this.trimCategoryName(category.name)}
-                icon={this.renderIcon()}
+                // icon={this.renderIcon()}
                 onStoreQuizCategory={() => this.props.onStoreQuizCategory(category.id, this.trimCategoryName(category.name))}
                 selected={category.id === this.props.currentCategory}
             />
