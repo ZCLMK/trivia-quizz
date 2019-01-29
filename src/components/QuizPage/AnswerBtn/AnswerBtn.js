@@ -18,17 +18,18 @@ class AnswerBtn extends Component {
         return 'answer-btn';
     }
 
+    handleClickBtn = () => {
+        this.props.handleClickAnswer()
+        this.setState({ wasClicked: true })
+        this.setBtnClass()
+    }
     render() {
         return (
-            <div className={this.setBtnClass()}
-                onClick={() => {
-                    this.props.handleClickAnswer()
-                    this.setState({ wasClicked: true })
-                    this.setBtnClass()
-                }}>
-                <p>
-                    {this.props.answer}
-                </p>
+            <div
+                className={this.setBtnClass()}
+                onClick={() => this.handleClickBtn()}>
+
+                <p>{this.props.answer}</p>
             </div>)
     }
 }
