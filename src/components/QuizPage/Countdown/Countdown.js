@@ -5,7 +5,6 @@ let myCountDown = null; //permet de reset réellement la valeur;
 class Countdown extends Component {
     state = {
         remainingTime: null,
-
     }
     componentDidMount() {
         this.resetCountDown()
@@ -15,14 +14,14 @@ class Countdown extends Component {
         if (prevprops.currentQuestion !== this.props.currentQuestion) {
             this.resetCountDown();
         }
+        if (this.props.countdownVisible === false) {
+            clearInterval(myCountDown)
+        }
     }
 
     resetCountDown() {
 
-        this.setState(
-            {
-                remainingTime: 20,
-            })
+        this.setState({ remainingTime: 10 })
 
         if (myCountDown) {
             clearInterval(myCountDown);
@@ -45,6 +44,7 @@ class Countdown extends Component {
 
 
     render() {
+        // let correctClass = this.props.countdownVisible 
         let countDown = this.props.countdownVisible ? (
             <div id='Countdown'>
                 {this.state.remainingTime}

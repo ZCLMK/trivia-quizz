@@ -6,11 +6,9 @@ import * as actions from '../../store/actions/index';
 import Countdown from './Countdown/Countdown';
 
 class QuizPage extends Component {
-
-
     state = {
         currentQuestionNumber: 1,
-        withCountdown: true
+        withCountdown: true,
     }
     componentDidUpdate = (prevProps, prevState) => {
         console.log(this.isLastQuestion())
@@ -58,7 +56,10 @@ class QuizPage extends Component {
         let possibleAnswersArray = this.props.questions ? [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')] : null;
         let possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map((answer, i) => {
             return < AnswerBtn
+
                 answer={answer}
+                isCorrectAnswer={answer === this.getQuestionProperty('correct_answer')}
+                isShowingAnswer={!this.state.withCountdown}  // EITHER we are showing the countdown OR the right answer
                 key={i}
                 handleClickAnswer={() => {
                     if (!this.isLastQuestion()) {
