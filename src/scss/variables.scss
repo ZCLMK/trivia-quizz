@@ -1,6 +1,17 @@
-/*
-Define color scheme
-*/
+/* color scheme : */ 
+$v-dark-blue: rgba(9, 64, 116, 1);
+$dark-blue: rgb(0, 103, 199);
+$mid-blue: rgba(60, 105, 151, 1);
+$light-blue: rgba(90, 219, 255, 1);
+$yellow: rgba(255, 221, 74, 1);
+$orange: rgba(254, 144, 0, 1); 
+
+// FONTS
+
+$title-font: 'Rammetto One', cursive;
+$subtitle-font: 'Hind', sans-serif;
+$font1: 'Alegreya Sans SC', sans-serif;
+$font2: 'Bubblegum Sans', cursive;
 
 $primary-border-radius: 2px;
 $bandeau-height: 100px; 
@@ -10,7 +21,10 @@ $bandeau-padding: 10px;
     @include flex-center;
     width: 100%;
     height: 40px;
-    background-color: rgba(240, 110, 3, 0.993);
+    margin: 0px;
+    background-color: $yellow;
+    color: $dark-blue;
+    font-family:$subtitle-font;
 }
 
 /*  MIXINS */
@@ -22,4 +36,17 @@ $bandeau-padding: 10px;
     align-items: $align;
 }
 
-
+@mixin quiz-btn(){
+    font-family: $font2;
+    height: 60px;
+    @include flex-center;
+    border-radius: 3px;
+    border: $primary-border-radius;
+    background-color: $dark-blue;
+    padding: 10px;
+    margin: 7px 0px;
+    color: #fff;
+    &:hover{
+        background-color: lighten($dark-blue, 15%);
+    }
+}

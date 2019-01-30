@@ -2,19 +2,18 @@
 @import './variables.scss';
 
 .question-number-picker{
-    height: 100px;
     background-color: rgb(255, 255, 255);
-    padding: 10px;
+    padding: 0px;
     width: 100%;   
-    display:flex;
-    justify-content: center;
-    @include flex-center;
+    height: 200px;
+    @include flex-center(column, space-between, center);
 }
 
 #question-number-wrapper{
     
     height: 100%;
-    width:50%;
+    width:80%;
+
     // display: flex;
     // justify-content: space-around;
     @include flex-center(row, space-around, center);
@@ -23,8 +22,12 @@
 }
 .question-number-btn{
     border-radius: $primary-border-radius;
-    background-color: rgba(0, 4, 218, 0.315);
     width: 70px;
-    @include flex-center;
+    @include quiz-btn;
+}
+
+#selected-nbr{
+    background-color: $yellow;
+    color: $dark-blue;
 }
 

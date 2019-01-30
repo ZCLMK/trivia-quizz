@@ -1,6 +1,5 @@
 @import './variables.scss';
 
-
 .answer-btn{
     @include flex-center;
     border-radius: 20px;
@@ -10,6 +9,7 @@
     height: 30px;
     padding: 10px;
     margin: 7px 0px;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     &:hover{
         background-color: darken(rgb(0, 153, 255), 8%);
     }
@@ -17,4 +17,13 @@
         font-weight: 800;
         color: #fff;
     }
+
+}
+
+#correct{
+    background-color: green;
+}
+
+#incorrect{
+    background-color: red;
 }

@@ -7,30 +7,29 @@ class AnswerBtn extends Component {
         wasClicked: false
     }
 
-    setBtnClass = () => {
-        if (this.props.isShowingAnswer) {
-            if (this.props.isCorrectAnswer) {
-                return 'answer-btn correct'
-            } else if (!this.props.isCorrectAnswer && this.state.wasClicked) {
-                return 'answer-btn incorrect'
-            }
-        }
-        return 'answer-btn';
-    }
-
     handleClickBtn = () => {
         this.props.handleClickAnswer()
         this.setState({ wasClicked: true })
-        this.setBtnClass()
     }
     render() {
+        let btnId;
+        if (this.props.isShowingAnswer) { // si je montre la réponse
+            if (this.props.isCorrectAnswer) {
+                btnId = 'correct'
+            } else if (!this.props.isCorrectAnswer && this.state.wasClicked) {
+                btnId = 'incorrect'
+            }
+        } else {
+            btnId = '';
+        }
         return (
             <div
-                className={this.setBtnClass()}
+                className="answer-btn"
+                id={btnId}
                 onClick={() => this.handleClickBtn()}>
-
                 <p>{this.props.answer}</p>
-            </div>)
+            </div>
+        )
     }
 }
 export default AnswerBtn

@@ -10,8 +10,12 @@ class DifficultyPicker extends Component {
         let hardClass = this.props.quizLevel === 'hard' ? ' select-hard' : '';
         // créer une variable pr chq classe CSS de niveau, la faire varier selon le niveau choisi
         return (
+
             <div id="difficultyPicker">
-                <div id="difficulty-wrapper">
+                <div className="title-wrapper">
+                    <h1>Difficulty</h1>
+                </div>
+                <div id="difficulty-btns-wrapper">
                     <div className={'difficulty-btn' + easyClass} onClick={() => this.props.onSelectLevel("easy")}>Easy</div>
                     <div className={'difficulty-btn' + mediumClass} onClick={() => this.props.onSelectLevel("medium")}>Medium</div>
                     <div className={'difficulty-btn' + hardClass} onClick={() => this.props.onSelectLevel("hard")}>Hard</div>

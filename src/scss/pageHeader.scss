@@ -2,12 +2,16 @@
 
 #pageHeader{
     height: 70px;
-    background-color: rgb(0, 103, 199);
-   @include flex-center;
+    background-color: $dark-blue;
+   @include flex-center(row, flex-start, center);
+   font-family: $title-font;
+   padding: 0 20px;
 }
 
 #pageTitle{
-    color: white;
+    color: #fff;
     font-weight: 800;
     font-size: 2em;
+    cursor: pointer;
+    text-decoration: none;
 }

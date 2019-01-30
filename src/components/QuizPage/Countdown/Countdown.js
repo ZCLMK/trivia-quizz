@@ -21,7 +21,7 @@ class Countdown extends Component {
 
     resetCountDown() {
 
-        this.setState({ remainingTime: 10 })
+        this.setState({ remainingTime: 5 })
 
         if (myCountDown) {
             clearInterval(myCountDown);

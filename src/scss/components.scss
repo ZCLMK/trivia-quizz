@@ -1,8 +1,10 @@
+@import './variables';
 .title-wrapper{
     @include titleWrapper;
     h1 {
-        color: #fff;
+        color: $dark-blue;
          font-weight: 600;
          font-size: 1.4em;
+         font-family: $subtitle-font;
     }
 }

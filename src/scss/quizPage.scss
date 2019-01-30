@@ -17,8 +17,12 @@
     @include flex-center(row, space-evenly,center);
     padding: 30px;
     flex-wrap: wrap;
-
 }
+#submit-params-wrapper{
+    @include flex-center;
+    height: 60px;
+}
+
 
 
 

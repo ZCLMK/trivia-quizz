@@ -3,7 +3,7 @@ import React from 'react'
 const pageHeader = (props) => {
     return (
         <div id="pageHeader">
-            <h1 id="pageTitle">Trivia Quizz</h1>
+            <a href='./' id="pageTitle">Trivia Quizz</a>
         </div>
     )
 }

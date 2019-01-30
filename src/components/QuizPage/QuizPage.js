@@ -7,11 +7,15 @@ import Countdown from './Countdown/Countdown';
 
 class QuizPage extends Component {
     state = {
-        currentQuestionNumber: 1,
+        currentQuestionNumber: 0,
         withCountdown: true,
+        hasReceivedAnswer: false // une réponse a-t-elle déja été reçue pour cette question ? 
     }
     componentDidUpdate = (prevProps, prevState) => {
         console.log(this.isLastQuestion())
+        if (prevState.currentQuestionNumber !== this.state.currentQuestionNumber) {
+            this.setState({ hasReceivedAnswer: false })
+        }
     }
     // Accéder aux propriétés de la question actuelle, dont le numéro est à this.state.currentQuestionNumber
     getQuestionProperty = (property) => {
@@ -19,14 +23,19 @@ class QuizPage extends Component {
     }
 
     handleClickAnswer = (answer, correctAnswer) => {
-        // Vérifier qu'il reste des questions à poser
-        if (!this.isLastQuestion()) {
-            this.props.evaluateAnswer(answer, correctAnswer);
-            this.goToNextQuestion()
+        // vérifier qu'aucune réponse n'a été reçue pour cette question
+        if (!this.state.hasReceivedAnswer) {
+            // Vérifier qu'il reste des questions à poser
+            if (!this.isLastQuestion()) {
+                this.props.evaluateAnswer(answer, correctAnswer);
+                this.setState({ hasReceivedAnswer: true }) // ne prends
+                this.goToNextQuestion()
 
-
-        } else { // Plus de questions, aller à la page des résutlats => './quiz-results'
-            this.props.history.push('./quiz-results');
+            } else { // Plus de questions, aller à la page des résutlats => './quiz-results'
+                this.props.history.push('./quiz-results');
+            }
+        } else {
+            console.log("answer received")
         }
     }
 
@@ -42,40 +51,42 @@ class QuizPage extends Component {
                     withCountdown: true
                 });
             }
-        }, 5000);
+        }, 3000);
         // display countdown again
     }
 
     isLastQuestion = () => {
+        console.log(`current questio nbr: ${this.state.currentQuestionNumber} nbr of questions: ${this.props.numberOfQuestions}`)
         return this.state.currentQuestionNumber === this.props.numberOfQuestions - 1;
     }
 
     render() {
+        let possibleAnswers = null;
         // mettre les 'correct_answers' et les 'incorrect_answers' dans un même array
+        if (this.state.currentQuestionNumber < this.props.numberOfQuestions) {
+            let possibleAnswersArray = this.props.questions ? [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')] : null;
+            possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map((answer, i) => {
+                return < AnswerBtn
 
-        let possibleAnswersArray = this.props.questions ? [this.getQuestionProperty('correct_answer'), ...this.getQuestionProperty('incorrect_answers')] : null;
-        let possibleAnswers = possibleAnswersArray ? possibleAnswersArray.map((answer, i) => {
-            return < AnswerBtn
+                    answer={answer}
+                    isCorrectAnswer={answer === this.getQuestionProperty('correct_answer')}
+                    isShowingAnswer={!this.state.withCountdown}  // EITHER we are showing the countdown OR the right answer
+                    key={i}
+                    handleClickAnswer={() => {
+                        if (!this.isLastQuestion()) {
+                            this.handleClickAnswer(answer, this.getQuestionProperty('correct_answer'))
+                        } else {
+                            this.props.history.push('./quiz-results')
+                            return;
+                        }
+                    }}
+                />
+            }) : null
+            //    mélange les question SI question à choix multiple
 
-                answer={answer}
-                isCorrectAnswer={answer === this.getQuestionProperty('correct_answer')}
-                isShowingAnswer={!this.state.withCountdown}  // EITHER we are showing the countdown OR the right answer
-                key={i}
-                handleClickAnswer={() => {
-                    if (!this.isLastQuestion()) {
-                        this.handleClickAnswer(answer, this.getQuestionProperty('correct_answer'))
-                    } else {
-                        this.props.history.push('./quiz-results')
-                        return;
-                    }
-                }}
-            />
-        }) : null
-
-        //    mélange les question SI question à choix multiple
-
-        if (this.getQuestionProperty('type') === "multiple" && !this.isLastQuestion()) {
-            possibleAnswersArray = randomizeArray(possibleAnswersArray);
+            if (this.getQuestionProperty('type') === "multiple" && !this.isLastQuestion()) {
+                possibleAnswersArray = randomizeArray(possibleAnswersArray);
+            }
         }
 
         return (
